@@ -13,12 +13,12 @@
         <Copyright>Copyright (c) Alexis Brooks 2026</Copyright>
         <Authors>0xAlexisSys</Authors>
         <Description>A collection of quality-of-life utilities for C# development with Godot.</Description>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
-        <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/$(Authors)/$(AssemblyName)</PackageProjectUrl>
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>$(PackageProjectUrl)</RepositoryUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageReleaseNotes>See: $(PackageProjectUrl)/blob/master/CHANGELOG.md</PackageReleaseNotes>
+        <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
 
         <!-- Properties -->
         <SourceGenAssemblyName>$(AssemblyName).SourceGen</SourceGenAssemblyName>

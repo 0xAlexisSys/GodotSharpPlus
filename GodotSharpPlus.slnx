@@ -2,6 +2,7 @@
     <Folder Name="/root/">
         <File Path="Makefile"/>
         <File Path="README.md"/>
+        <File Path="CHANGELOG.md"/>
         <File Path="Icon.png"/>
         <File Path="Directory.Packages.props"/>
         <File Path="Directory.Build.props"/>
