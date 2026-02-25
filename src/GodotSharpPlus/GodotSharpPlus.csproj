@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <!-- Project -->
+        <TargetFramework>net10.0</TargetFramework>
+        <NoWarn>$(NoWarn);CS1591</NoWarn>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
+        <!-- NuGet -->
+        <PackageTags>godot</PackageTags>
+        <Version>1.0.1</Version>
+        <Icon>Icon.png</Icon>
+        <Copyright>Copyright (c) Alexis Brooks 2026</Copyright>
+        <Authors>0xAlexisSys</Authors>
+        <Description>A collection of quality-of-life utilities for C# development with Godot.</Description>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
+        <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/$(Authors)/$(AssemblyName)</PackageProjectUrl>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>$(PackageProjectUrl)</RepositoryUrl>
+
+        <!-- Properties -->
+        <SourceGenAssemblyName>$(AssemblyName).SourceGen</SourceGenAssemblyName>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="$(SolutionDirectory)$(PackageReadmeFile)" Pack="true" PackagePath="/" Visible="false"/>
+        <None Include="$(SolutionDirectory)$(Icon)" Pack="true" PackagePath="/" Visible="false"/>
+        <None Include="$(SourceDirectory)$(SourceGenAssemblyName)/bin/$(Configuration)/netstandard2.0/$(SourceGenAssemblyName).dll" Pack="true" PackagePath="$(AnalyzerDirectory)" Visible="false"/>
+
+        <ProjectReference Include="$(SourceDirectory)$(SourceGenAssemblyName)/$(SourceGenAssemblyName).csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
+
+        <PackageReference Include="GodotSharp" PrivateAssets="all"/>
+        <PackageReference Include="JetBrains.Annotations" PrivateAssets="all"/>
+    </ItemGroup>
+</Project>

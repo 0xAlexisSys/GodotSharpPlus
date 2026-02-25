@@ -1,0 +1,17 @@
+<Solution>
+    <Folder Name="/root/">
+        <File Path="Makefile"/>
+        <File Path="README.md"/>
+        <File Path="Icon.png"/>
+        <File Path="Directory.Packages.props"/>
+        <File Path="Directory.Build.props"/>
+        <File Path=".editorconfig"/>
+        <File Path=".gitattributes"/>
+        <File Path=".gitignore"/>
+    </Folder>
+
+    <Folder Name="/src/">
+        <Project Path="src/GodotSharpPlus/GodotSharpPlus.csproj"/>
+        <Project Path="src/GodotSharpPlus.SourceGen/GodotSharpPlus.SourceGen.csproj"/>
+    </Folder>
+</Solution>

@@ -1,0 +1,24 @@
+<Project>
+    <PropertyGroup>
+        <!-- Project -->
+        <LangVersion>14.0</LangVersion>
+        <Nullable>enable</Nullable>
+        <NoWarn>IDE0130</NoWarn>
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+
+        <!-- Variables -->
+        <SolutionDirectory>$(MSBuildThisFileDirectory)</SolutionDirectory>
+        <SourceDirectory>$(SolutionDirectory)src/</SourceDirectory>
+        <AnalyzerDirectory>analyzers/dotnet/cs</AnalyzerDirectory>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="$(SourceDirectory)MainUsings.cs"/>
+
+        <PackageReference Include="Roslynator.Analyzers" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive"/>
+        <PackageReference Include="Roslynator.CodeAnalysis.Analyzers" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive"/>
+        <PackageReference Include="Roslynator.Formatting.Analyzers" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive"/>
+        <PackageReference Include="Roslynator.CodeFixes" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive"/>
+        <PackageReference Include="Roslynator.Refactorings" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive"/>
+    </ItemGroup>
+</Project>
