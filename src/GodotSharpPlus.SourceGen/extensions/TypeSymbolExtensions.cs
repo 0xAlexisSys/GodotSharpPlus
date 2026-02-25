@@ -10,7 +10,7 @@ internal static class TypeSymbolExtensions
         {
             get
             {
-                if (self.ToDisplayString() == NodeQualifiedName) return true;
+                if (self.ToDisplayString().TrimEnd('?') == NodeQualifiedName) return true;
 
                 INamedTypeSymbol? typeSymbol = self.BaseType;
                 while (typeSymbol is not null)
