@@ -52,6 +52,7 @@ internal sealed class NodePathAttributeAnalyzer : DiagnosticAnalyzer
                     {
                         Diagnostic diagnostic = Diagnostic.Create(_gdp0002Rule, classDeclarationSyntax.GetLocation(), classSymbol.Name);
                         context.ReportDiagnostic(diagnostic);
+                        break;
                     }
                 }
             }
