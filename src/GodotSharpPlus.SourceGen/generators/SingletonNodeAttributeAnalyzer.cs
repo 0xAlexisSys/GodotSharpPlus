@@ -16,7 +16,7 @@ internal sealed class SingletonNodeAttributeAnalyzer : DiagnosticAnalyzer
         "Usage",
         DiagnosticSeverity.Error,
         true,
-        customTags: DefaultAnalyzerDiagnosticTags
+        customTags: WellKnownDiagnosticTags.NotConfigurable
     );
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } =

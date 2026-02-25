@@ -16,7 +16,7 @@ internal sealed class NodePathAttributeAnalyzer : DiagnosticAnalyzer
         "Usage",
         DiagnosticSeverity.Error,
         isEnabledByDefault: true,
-        customTags: DefaultAnalyzerDiagnosticTags
+        customTags: WellKnownDiagnosticTags.NotConfigurable
     );
     private static readonly DiagnosticDescriptor _gdp0003Rule = new(
         "GDP0003",
@@ -25,7 +25,7 @@ internal sealed class NodePathAttributeAnalyzer : DiagnosticAnalyzer
         "Usage",
         DiagnosticSeverity.Error,
         isEnabledByDefault: true,
-        customTags: DefaultAnalyzerDiagnosticTags
+        customTags: WellKnownDiagnosticTags.NotConfigurable
     );
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } =

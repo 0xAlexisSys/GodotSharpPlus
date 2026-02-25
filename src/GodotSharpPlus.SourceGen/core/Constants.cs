@@ -15,10 +15,5 @@ internal static class Constants
                                            #nullable enable
                                            """;
 
-    public static readonly string[] DefaultAnalyzerDiagnosticTags =
-    [
-        WellKnownDiagnosticTags.Compiler,
-        WellKnownDiagnosticTags.NotConfigurable,
-    ];
     public static readonly Encoding SourceFileEncoding = Encoding.UTF8;
 }
