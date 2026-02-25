@@ -31,14 +31,13 @@ internal sealed class SingletonNodeAttributeAnalyzer : DiagnosticAnalyzer
 
         initContext.RegisterSyntaxNodeAction(static context =>
         {
-            if (context.Node is not ClassDeclarationSyntax classDeclarationSyntax) return;
-            if (context.SemanticModel.GetDeclaredSymbol(classDeclarationSyntax) is not {} classSymbol) return;
-
-            if (!classSymbol.IsNode && classSymbol.GetAttributeData(SingletonNodeAttributeInfo.QualifiedName) is not null)
+            if (context.Node is not ClassDeclarationSyntax classDeclarationSyntax || context.SemanticModel.GetDeclaredSymbol(classDeclarationSyntax) is not {IsNode: false} classSymbol || classSymbol.GetAttributeData(SingletonNodeAttributeInfo.QualifiedName) is null)
             {
-                Diagnostic diagnostic = Diagnostic.Create(_gdp0001Rule, classDeclarationSyntax.Identifier.GetLocation(), classDeclarationSyntax.Identifier.Text);
-                context.ReportDiagnostic(diagnostic);
+                return;
             }
+
+            Diagnostic diagnostic = Diagnostic.Create(_gdp0001Rule, classDeclarationSyntax.Identifier.GetLocation(), classDeclarationSyntax.Identifier.Text);
+            context.ReportDiagnostic(diagnostic);
         }, SyntaxKind.ClassDeclaration);
     }
 }
