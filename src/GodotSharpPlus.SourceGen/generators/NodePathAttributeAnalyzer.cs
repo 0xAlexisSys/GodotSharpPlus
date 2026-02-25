@@ -58,16 +58,13 @@ internal sealed class NodePathAttributeAnalyzer : DiagnosticAnalyzer
             }
             else if (context.Node is FieldDeclarationSyntax fieldDeclarationSyntax)
             {
-                if (!fieldDeclarationSyntax.Declaration.Variables.Any() || context.SemanticModel.GetDeclaredSymbol(fieldDeclarationSyntax.Declaration.Variables[0]) is not IFieldSymbol fieldSymbol || !fieldSymbol.ContainingType.IsNode)
+                if (!fieldDeclarationSyntax.Declaration.Variables.Any() || context.SemanticModel.GetDeclaredSymbol(fieldDeclarationSyntax.Declaration.Variables[0]) is not IFieldSymbol {Type.IsNode: false} fieldSymbol || !fieldSymbol.ContainingType.IsNode || fieldSymbol.GetAttributeData(NodePathAttributeInfo.QualifiedName) is null)
                 {
                     return;
                 }
 
-                if (fieldSymbol.GetAttributeData(NodePathAttributeInfo.QualifiedName) is not null && !fieldSymbol.Type.IsNode)
-                {
-                    Diagnostic diagnostic = Diagnostic.Create(_gdp0003Rule, fieldDeclarationSyntax.GetLocation(), fieldSymbol.Name);
-                    context.ReportDiagnostic(diagnostic);
-                }
+                Diagnostic diagnostic = Diagnostic.Create(_gdp0003Rule, fieldDeclarationSyntax.GetLocation(), fieldSymbol.Name);
+                context.ReportDiagnostic(diagnostic);
             }
         }, SyntaxKind.ClassDeclaration, SyntaxKind.FieldDeclaration);
     }
