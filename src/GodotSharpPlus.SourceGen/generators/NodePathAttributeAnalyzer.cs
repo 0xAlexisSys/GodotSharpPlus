@@ -15,7 +15,7 @@ internal sealed class NodePathAttributeAnalyzer : DiagnosticAnalyzer
         $$"""Class '{0}' does not inherit from {{NodeName}} but contains fields decorated with {{NodePathAttributeInfo.Name}}""",
         "Usage",
         DiagnosticSeverity.Error,
-        isEnabledByDefault: true,
+        true,
         customTags: WellKnownDiagnosticTags.NotConfigurable
     );
     private static readonly DiagnosticDescriptor _gdp0003Rule = new(
@@ -24,7 +24,7 @@ internal sealed class NodePathAttributeAnalyzer : DiagnosticAnalyzer
         $$"""Field '{0}' is not of type {{NodeName}} and cannot be decorated with {{NodePathAttributeInfo.Name}}""",
         "Usage",
         DiagnosticSeverity.Error,
-        isEnabledByDefault: true,
+        true,
         customTags: WellKnownDiagnosticTags.NotConfigurable
     );
 
