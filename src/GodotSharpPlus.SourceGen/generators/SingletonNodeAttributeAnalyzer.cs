@@ -11,8 +11,8 @@ internal sealed class SingletonNodeAttributeAnalyzer : DiagnosticAnalyzer
 {
     private static readonly DiagnosticDescriptor _gdp0001Rule = new(
         "GDP0001",
-        $"{SingletonNodeAttributeInfo.Name} is not applicable to classes that do not inherit from {NodeName}",
-        $$"""Class '{0}' does not inherit from {{NodeName}} and cannot be decorated with {{SingletonNodeAttributeInfo.Name}}""",
+        $"{SingletonNodeAttributeInfo.Name} is only applicable to classes derived from {NodeName}",
+        $$"""Class '{0}' is decorated with {{SingletonNodeAttributeInfo.Name}} but is not derived from {{NodeName}}""",
         "Usage",
         DiagnosticSeverity.Error,
         true,
