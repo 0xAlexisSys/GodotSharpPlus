@@ -6,7 +6,7 @@
         <NoWarn>IDE0130</NoWarn>
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 
-        <!-- Variables -->
+        <!-- Properties -->
         <SolutionDirectory>$(MSBuildThisFileDirectory)</SolutionDirectory>
         <SourceDirectory>$(SolutionDirectory)src/</SourceDirectory>
         <AnalyzerDirectory>analyzers/dotnet/cs</AnalyzerDirectory>
