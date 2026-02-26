@@ -11,8 +11,8 @@ internal sealed class NodePathAttributeAnalyzer : DiagnosticAnalyzer
 {
     private static readonly DiagnosticDescriptor _gdp0002Rule = new(
         "GDP0002",
-        $"Classes not inheriting from {NodeName} cannot contain fields decorated with {NodePathAttributeInfo.Name}",
-        $$"""Class '{0}' does not inherit from {{NodeName}} but contains fields decorated with {{NodePathAttributeInfo.Name}}""",
+        $"{NodePathAttributeInfo.Name} can only be used in classes derived from {NodeName}",
+        $$"""Class '{0}' contains a field decorated with {{NodePathAttributeInfo.Name}} but is not derived from {{NodeName}}""",
         "Usage",
         DiagnosticSeverity.Error,
         true,
@@ -20,8 +20,8 @@ internal sealed class NodePathAttributeAnalyzer : DiagnosticAnalyzer
     );
     private static readonly DiagnosticDescriptor _gdp0003Rule = new(
         "GDP0003",
-        $"{NodePathAttributeInfo.Name} is not applicable to non-{NodeName} fields",
-        $$"""Field '{0}' is not of type {{NodeName}} and cannot be decorated with {{NodePathAttributeInfo.Name}}""",
+        $"{NodePathAttributeInfo.Name} is only applicable to {NodeName} fields",
+        $$"""Field '{0}' is decorated with {{NodePathAttributeInfo.Name}} but is not a {{NodeName}}""",
         "Usage",
         DiagnosticSeverity.Error,
         true,
