@@ -5,6 +5,7 @@
         <Nullable>enable</Nullable>
         <NoWarn>IDE0130</NoWarn>
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+        <Version>1.0.2</Version>
 
         <!-- Properties -->
         <SolutionDirectory>$(MSBuildThisFileDirectory)</SolutionDirectory>
