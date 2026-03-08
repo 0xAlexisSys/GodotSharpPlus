@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace GodotSharpPlus.SourceGen;
+namespace GodotSharpPlus.SourceGen.Core;
 
 internal static class Constants
 {

@@ -1,1 +1,3 @@
-global using static GodotSharpPlus.SourceGen.Constants;
+global using GodotSharpPlus.SourceGen.Extensions;
+
+global using static GodotSharpPlus.SourceGen.Core.Constants;

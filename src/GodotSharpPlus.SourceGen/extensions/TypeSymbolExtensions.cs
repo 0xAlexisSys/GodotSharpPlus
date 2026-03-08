@@ -1,6 +1,6 @@
 using Microsoft.CodeAnalysis;
 
-namespace GodotSharpPlus.SourceGen;
+namespace GodotSharpPlus.SourceGen.Extensions;
 
 internal static class TypeSymbolExtensions
 {
