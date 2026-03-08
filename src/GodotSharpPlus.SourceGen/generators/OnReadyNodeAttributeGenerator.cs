@@ -1,7 +1,6 @@
 // ReSharper disable ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
 // ReSharper disable ForeachCanBePartlyConvertedToQueryUsingAnotherGetEnumerator
 
-using System.Collections.Generic;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -9,14 +8,14 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace GodotSharpPlus.SourceGen;
 
-internal static class NodePathAttributeInfo
+internal static class OnReadyNodeAttributeInfo
 {
-    public const string Name = "NodePathAttribute";
+    public const string Name = "OnReadyNodeAttribute";
     public const string QualifiedName = $"{AttributeNamespace}.{Name}";
 }
 
 [Generator]
-internal sealed class NodePathAttributeGenerator : IIncrementalGenerator
+internal sealed class OnReadyNodeAttributeGenerator : IIncrementalGenerator
 {
     public void Initialize(IncrementalGeneratorInitializationContext initContext)
     {
@@ -31,7 +30,7 @@ internal sealed class NodePathAttributeGenerator : IIncrementalGenerator
                 Dictionary<IFieldSymbol, string> nodeFields = [];
                 foreach (ISymbol symbol in classSymbol.GetMembers())
                 {
-                    if (symbol is IFieldSymbol {Type.IsNode: true} fieldSymbol && fieldSymbol.GetAttributeData(NodePathAttributeInfo.QualifiedName) is {} attributeData)
+                    if (symbol is IFieldSymbol {Type.IsNode: true} fieldSymbol && fieldSymbol.GetAttributeData(OnReadyNodeAttributeInfo.QualifiedName) is {} attributeData)
                     {
                         nodeFields.Add(fieldSymbol, attributeData.ConstructorArguments[0].Value?.ToString() ?? string.Empty);
                     }
@@ -65,7 +64,10 @@ internal sealed class NodePathAttributeGenerator : IIncrementalGenerator
                 if (typeQualifiedName != NodeQualifiedName) sourceCodeBuilder.Append($"<{typeQualifiedName}>");
                 sourceCodeBuilder.AppendLine($"(\"{pair.Value}\");");
             }
-            sourceCodeBuilder.Append("    }\n}");
+            sourceCodeBuilder.Append("""
+                                         }
+                                     }
+                                     """);
 
             context.AddSource(className + SourceFileNameSuffix, SourceText.From(sourceCodeBuilder.ToString(), SourceFileEncoding));
         });
