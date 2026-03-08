@@ -1,6 +1,13 @@
 #pragma warning disable IDE0005
 // ReSharper disable RedundantUsingDirective.Global
 
+global using System;
+global using System.Collections.Concurrent;
+global using System.Collections.Generic;
+global using System.Threading;
+global using System.Threading.Channels;
+global using System.Threading.Tasks;
+
 global using s8 = sbyte;
 global using s16 = short;
 global using s32 = int;
