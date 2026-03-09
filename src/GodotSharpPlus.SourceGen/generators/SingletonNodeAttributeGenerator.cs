@@ -1,4 +1,6 @@
-using System;
+// ReSharper disable ForeachCanBePartlyConvertedToQueryUsingAnotherGetEnumerator
+
+using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
@@ -14,12 +16,16 @@ internal static class SingletonNodeAttributeInfo
 [Generator]
 internal sealed class SingletonNodeAttributeGenerator : IIncrementalGenerator
 {
-    private static readonly string[] _constructorAccessibilityMap =
-    [
-        "public",
-        "protected",
-        "private",
-    ];
+    private static readonly Dictionary<Accessibility, string> _constructorAccessibilityMap = new()
+    {
+        [Accessibility.NotApplicable] = string.Empty,
+        [Accessibility.Public] = "public",
+        [Accessibility.Protected] = "protected",
+        [Accessibility.Private] = "private",
+        [Accessibility.Internal] = "internal",
+        [Accessibility.ProtectedOrInternal] = "protected internal",
+        [Accessibility.ProtectedAndInternal] = "private protected",
+    };
 
     public void Initialize(IncrementalGeneratorInitializationContext initContext)
     {
@@ -30,12 +36,7 @@ internal sealed class SingletonNodeAttributeGenerator : IIncrementalGenerator
             {
                 // ReSharper disable ArrangeObjectCreationWhenTypeNotEvident
                 ClassDeclarationSyntax classDeclarationSyntax = (ClassDeclarationSyntax)context.TargetNode;
-
-                if (context.SemanticModel.GetDeclaredSymbol(classDeclarationSyntax) is not INamedTypeSymbol {IsNode: true} classSymbol || classSymbol.GetAttributeData(SingletonNodeAttributeInfo.QualifiedName) is not {} attributeData)
-                {
-                    return new ClassData();
-                }
-                return new ClassData(classDeclarationSyntax, classSymbol, Convert.ToByte(attributeData.ConstructorArguments[0].Value));
+                return context.SemanticModel.GetDeclaredSymbol(classDeclarationSyntax) is INamedTypeSymbol {IsNode: true} classSymbol && classSymbol.GetAttributeData(SingletonNodeAttributeInfo.QualifiedName) is not null ? new ClassData(classDeclarationSyntax, classSymbol) : new ClassData();
                 // ReSharper restore ArrangeObjectCreationWhenTypeNotEvident
             }
         ).Where(static classData => classData.DeclarationSyntax is not null && classData.Symbol is not null);
@@ -43,32 +44,45 @@ internal sealed class SingletonNodeAttributeGenerator : IIncrementalGenerator
         initContext.RegisterSourceOutput(provider, static (context, classData) =>
         {
             string className = classData.DeclarationSyntax!.Identifier.Text;
-            string sourceCode = $$"""
-                                  {{SourceCodeHeader}}
 
-                                  namespace {{classData.Symbol!.ContainingNamespace.ToDisplayString()}};
+            StringBuilder sourceCodeBuilder = new($$"""
+                                                    {{SourceCodeHeader}}
 
-                                  partial class {{className}}
-                                  {
-                                      public static {{className}}? Instance { get; private set; }
+                                                    namespace {{classData.Symbol!.ContainingNamespace.ToDisplayString()}};
 
-                                      #nullable disable
-                                      {{_constructorAccessibilityMap[classData.ConstructorAccessibility]}} {{className}}()
-                                      {
-                                          if ({{className}}.IsInstanceValid(Instance)) throw new System.InvalidOperationException("An instance of {{className}} already exists.");
+                                                    partial class {{className}}
+                                                    {
+                                                        public static {{className}}? Instance { get; private set; }
 
-                                          Instance = this;
-                                          Init();
-                                      }
-                                      #nullable restore
+                                                        #nullable disable
 
-                                      partial void Init();
-                                  }
-                                  """;
+                                                    """);
+            sourceCodeBuilder.EnsureCapacity(640);
+            foreach (IMethodSymbol constructorSymbol in classData.Symbol.Constructors)
+            {
+                if (!constructorSymbol.IsStatic)
+                {
+                    sourceCodeBuilder.AppendLine($$"""
+                                                       {{_constructorAccessibilityMap[constructorSymbol.DeclaredAccessibility]}} partial {{className}}()
+                                                       {
+                                                           if ({{GodotNamespace}}.GodotObject.IsInstanceValid(Instance)) throw new System.InvalidOperationException("An instance of {{className}} already exists.");
 
-            context.AddSource(className + SourceFileNameSuffix, SourceText.From(sourceCode, SourceFileEncoding));
+                                                           Instance = this;
+                                                           Init();
+                                                       }
+                                                   """);
+                }
+            }
+            sourceCodeBuilder.Append("""
+                                         #nullable restore
+
+                                         partial void Init();
+                                     }
+                                     """);
+
+            context.AddSource(className + SourceFileNameSuffix, SourceText.From(sourceCodeBuilder.ToString(), SourceFileEncoding));
         });
     }
 
-    private readonly record struct ClassData(ClassDeclarationSyntax? DeclarationSyntax, INamedTypeSymbol? Symbol, u8 ConstructorAccessibility);
+    private readonly record struct ClassData(ClassDeclarationSyntax? DeclarationSyntax, INamedTypeSymbol? Symbol);
 }
