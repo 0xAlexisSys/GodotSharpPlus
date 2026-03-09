@@ -1,5 +1,4 @@
 // ReSharper disable ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
-// ReSharper disable ForeachCanBePartlyConvertedToQueryUsingAnotherGetEnumerator
 
 using System.Text;
 using Microsoft.CodeAnalysis;
