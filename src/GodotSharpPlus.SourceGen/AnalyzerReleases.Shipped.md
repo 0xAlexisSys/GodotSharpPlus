@@ -2,8 +2,8 @@
 
 ### New Rules
 
-Rule ID | Category | Severity | Notes
---------|----------|----------|-------
-GDP0001 | Usage | Error | SingletonNodeAttributeAnalyzer
-GDP0002 | Usage | Error | NodePathAttributeAnalyzer
-GDP0003 | Usage | Error | NodePathAttributeAnalyzer
+ Rule ID | Category | Severity | Notes                          
+---------|----------|----------|--------------------------------
+ GDP0001 | Usage    | Error    | SingletonNodeAttributeAnalyzer 
+ GDP0002 | Usage    | Error    | OnReadyNodeAttributeAnalyzer   
+ GDP0003 | Usage    | Error    | OnReadyNodeAttributeAnalyzer   
