@@ -50,21 +50,17 @@ internal sealed class OnReadyNodeAttributeAnalyzer : DiagnosticAnalyzer
                 {
                     if (symbol is IFieldSymbol fieldSymbol && fieldSymbol.GetAttributeData(OnReadyNodeAttributeInfo.QualifiedName) is not null)
                     {
-                        Diagnostic diagnostic = Diagnostic.Create(_gdp0002Rule, classDeclarationSyntax.GetLocation(), classSymbol.Name);
-                        context.ReportDiagnostic(diagnostic);
+                        context.ReportDiagnostic(Diagnostic.Create(_gdp0002Rule, classDeclarationSyntax.GetLocation(), classSymbol.Name));
                         break;
                     }
                 }
             }
             else if (context.Node is FieldDeclarationSyntax fieldDeclarationSyntax)
             {
-                if (!fieldDeclarationSyntax.Declaration.Variables.Any() || context.SemanticModel.GetDeclaredSymbol(fieldDeclarationSyntax.Declaration.Variables[0]) is not IFieldSymbol {Type.IsNode: false, ContainingType.IsNode: true} fieldSymbol || fieldSymbol.GetAttributeData(OnReadyNodeAttributeInfo.QualifiedName) is null)
+                if (fieldDeclarationSyntax.Declaration.Variables.Any() && context.SemanticModel.GetDeclaredSymbol(fieldDeclarationSyntax.Declaration.Variables[0]) is IFieldSymbol {Type.IsNode: false, ContainingType.IsNode: true} fieldSymbol && fieldSymbol.GetAttributeData(OnReadyNodeAttributeInfo.QualifiedName) is not null)
                 {
-                    return;
+                    context.ReportDiagnostic(Diagnostic.Create(_gdp0003Rule, fieldDeclarationSyntax.GetLocation(), fieldSymbol.Name));
                 }
-
-                Diagnostic diagnostic = Diagnostic.Create(_gdp0003Rule, fieldDeclarationSyntax.GetLocation(), fieldSymbol.Name);
-                context.ReportDiagnostic(diagnostic);
             }
         }, SyntaxKind.ClassDeclaration, SyntaxKind.FieldDeclaration);
     }
