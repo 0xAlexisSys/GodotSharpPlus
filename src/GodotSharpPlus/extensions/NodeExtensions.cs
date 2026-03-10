@@ -40,5 +40,24 @@ public static class NodeExtensions
         {
             foreach (Node child in self.GetChildren()) self.RemoveChild(child);
         }
+
+        /// <summary>
+        /// Adds the given <paramref name="scene"/> as a child <see cref="Node"/>.
+        /// </summary>
+        /// <param name="scene">
+        /// The <see cref="PackedScene"/> to instantiate.
+        /// </param>
+        /// <param name="editState">
+        /// Mainly relevant to the editor.
+        /// </param>
+        /// <param name="forceReadableName">
+        /// If <c>true</c>, improves the readability of the instantiated scene's name.
+        /// </param>
+        /// <param name="internal">
+        /// If not <see cref="Node.InternalMode.Disabled"/>, the instantiated scene is
+        /// internal.
+        /// </param>
+        [PublicAPI]
+        public void AddSceneChild(PackedScene scene, PackedScene.GenEditState editState = PackedScene.GenEditState.Disabled, bool forceReadableName = false, Node.InternalMode @internal = Node.InternalMode.Disabled) => scene.InstantiateAsChild<Node>(self, editState, forceReadableName, @internal);
     }
 }
