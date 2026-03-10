@@ -60,6 +60,7 @@ internal sealed class OnReadyNodeAttributeGenerator : IIncrementalGenerator
                 string typeQualifiedName = pair.Key.Type.ToDisplayString().TrimEnd('?');
 
                 sourceCodeBuilder.Append($"        {pair.Key.Name} = GetNode");
+                if (pair.Key.NullableAnnotation == NullableAnnotation.Annotated) sourceCodeBuilder.Append("OrNull");
                 if (typeQualifiedName != NodeQualifiedName) sourceCodeBuilder.Append($"<{typeQualifiedName}>");
                 sourceCodeBuilder.AppendLine($"(\"{pair.Value}\");");
             }
