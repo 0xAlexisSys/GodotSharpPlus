@@ -45,20 +45,15 @@ internal sealed class SingletonNodeAttributeGenerator : IIncrementalGenerator
         {
             string className = classData.DeclarationSyntax!.Identifier.Text;
 
-            StringBuilder sourceCodeBuilder = new($$"""
-                                                    {{SourceCodeHeader}}
+            StringBuilder sourceCodeBuilder = StringBuilder.InitSourceCode(640, classData.Symbol!);
+            sourceCodeBuilder.AppendLine($$"""
+                                           partial class {{className}}
+                                           {
+                                               public static {{className}}? Instance { get; private set; }
 
-                                                    namespace {{classData.Symbol!.ContainingNamespace.ToDisplayString()}};
-
-                                                    partial class {{className}}
-                                                    {
-                                                        public static {{className}}? Instance { get; private set; }
-
-                                                        #nullable disable
-
-                                                    """);
-            sourceCodeBuilder.EnsureCapacity(640);
-            foreach (IMethodSymbol constructorSymbol in classData.Symbol.Constructors)
+                                               #nullable disable
+                                           """);
+            foreach (IMethodSymbol constructorSymbol in classData.Symbol!.Constructors)
             {
                 if (!constructorSymbol.IsStatic)
                 {

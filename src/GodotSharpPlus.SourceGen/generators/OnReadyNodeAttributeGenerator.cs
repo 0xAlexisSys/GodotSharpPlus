@@ -43,18 +43,13 @@ internal sealed class OnReadyNodeAttributeGenerator : IIncrementalGenerator
         {
             string className = classData.DeclarationSyntax!.Identifier.Text;
 
-            StringBuilder sourceCodeBuilder = new($$"""
-                                                    {{SourceCodeHeader}}
-
-                                                    namespace {{classData.Symbol!.ContainingNamespace.ToDisplayString()}};
-
-                                                    partial class {{className}}
-                                                    {
-                                                        private void InitNodes()
-                                                        {
-
-                                                    """);
-            sourceCodeBuilder.EnsureCapacity(640);
+            StringBuilder sourceCodeBuilder = StringBuilder.InitSourceCode(640, classData.Symbol!);
+            sourceCodeBuilder.AppendLine($$"""
+                                           partial class {{className}}
+                                           {
+                                               private void InitNodes()
+                                               {
+                                           """);
             foreach (KeyValuePair<IFieldSymbol, string> pair in classData.NodeFields)
             {
                 string typeQualifiedName = pair.Key.Type.ToDisplayString().TrimEnd('?');
