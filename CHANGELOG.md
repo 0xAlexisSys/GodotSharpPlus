@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.1] - 2026-03-12
+
+### Fixed
+
+- Fix attribute-generated code causing build failures when the namespace is not explicitly declared in a class.
+
 ## [2.0.0] - 2026-03-10
 
 ### Added
@@ -45,6 +51,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+- [Version 2.0.1](#201---2026-03-12)
 - [Version 2.0.0](#200---2026-03-10)
 - [Version 1.0.2](#102---2026-02-26)
 - [Version 1.0.1](#101---2026-02-25)
