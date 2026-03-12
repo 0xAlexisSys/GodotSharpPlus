@@ -39,7 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Change namespaces to match the package name.
 
-## [1.0.0] - 2026-02-25
+## [1.0.0] - 2026-02-25 [YANKED]
 
 - First release.
 
@@ -48,4 +48,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Version 2.0.0](#200---2026-03-10)
 - [Version 1.0.2](#102---2026-02-26)
 - [Version 1.0.1](#101---2026-02-25)
-- [Version 1.0.0](#100---2026-02-25)
+- [Version 1.0.0](#100---2026-02-25-yanked)
