@@ -2,7 +2,7 @@ namespace GodotSharpPlus.Attributes;
 
 /// <summary>
 /// A <see cref="Node"/>-derived class decorated with this attribute can have only
-/// one instance in the scene tree at a time.
+/// one instance at a time.
 /// </summary>
 /// <remarks>
 /// This attribute implements a partial constructor which must be defined in the
