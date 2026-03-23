@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2026-03-23
+
+### Added
+
+- `CanvasItem.GetGlobalMousePositionI` - Identical to `CanvasItem.GetGlobalMousePosition`, except the result is a `Vector2I`.
+
+### Changed
+
+- Clarify the documented behavior of `SingletonNodeAttribute`.
+- Don't use `<see>` tags for usages of "node" in documentation.
+
 ## [2.0.1] - 2026-03-12
 
 ### Fixed
@@ -51,6 +62,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+- [Version 2.1.0](#210---2026-03-23)
 - [Version 2.0.1](#201---2026-03-12)
 - [Version 2.0.0](#200---2026-03-10)
 - [Version 1.0.2](#102---2026-02-26)
