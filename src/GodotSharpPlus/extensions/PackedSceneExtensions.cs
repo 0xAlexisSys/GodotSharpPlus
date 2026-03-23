@@ -11,7 +11,7 @@ public static class PackedSceneExtensions
         /// Instantiates the scene as a child of the given <paramref name="parent"/>.
         /// </summary>
         /// <param name="parent">
-        /// The <see cref="Node"/> that will add the instantiated scene.
+        /// The node that will add the instantiated scene.
         /// </param>
         /// <param name="editState">
         /// Mainly relevant to the editor.

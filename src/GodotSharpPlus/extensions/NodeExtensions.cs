@@ -8,7 +8,7 @@ public static class NodeExtensions
     extension(Node self)
     {
         /// <summary>
-        /// Deletes all children of this <see cref="Node"/>.
+        /// Deletes all children of this node.
         /// </summary>
         /// <param name="includeInternal">
         /// If <c>true</c>, internal children are also deleted.
@@ -20,7 +20,7 @@ public static class NodeExtensions
         }
 
         /// <summary>
-        /// Queues all children of this <see cref="Node"/> to be deleted at the end of the current frame.
+        /// Queues all children of this node to be deleted at the end of the current frame.
         /// </summary>
         /// <param name="includeInternal">
         /// If <c>true</c>, internal children are also queued for deletion.
@@ -32,7 +32,7 @@ public static class NodeExtensions
         }
 
         /// <summary>
-        /// Removes all children of this <see cref="Node"/>. The children are <b>not</b> deleted; see
+        /// Removes all children of this node. The children are <b>not</b> deleted; see
         /// <see cref="QueueFreeChildren"/>.
         /// </summary>
         [PublicAPI]
@@ -42,7 +42,7 @@ public static class NodeExtensions
         }
 
         /// <summary>
-        /// Adds the given <paramref name="scene"/> as a child <see cref="Node"/>.
+        /// Adds the given <paramref name="scene"/> as a child node.
         /// </summary>
         /// <param name="scene">
         /// The <see cref="PackedScene"/> to instantiate.
