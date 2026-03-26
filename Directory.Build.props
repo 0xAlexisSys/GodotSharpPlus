@@ -1,13 +1,11 @@
 <Project>
     <PropertyGroup>
-        <!-- Project -->
         <LangVersion>14.0</LangVersion>
         <Nullable>enable</Nullable>
         <NoWarn>IDE0130</NoWarn>
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
         <Version>2.1.0</Version>
 
-        <!-- Properties -->
         <SolutionDirectory>$(MSBuildThisFileDirectory)</SolutionDirectory>
         <SourceDirectory>$(SolutionDirectory)src/</SourceDirectory>
         <AnalyzerDirectory>analyzers/dotnet/cs</AnalyzerDirectory>

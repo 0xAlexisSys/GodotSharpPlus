@@ -1,12 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <!-- Project -->
         <TargetFramework>net10.0</TargetFramework>
         <NoWarn>$(NoWarn);CS1591</NoWarn>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
-        <!-- NuGet -->
         <PackageTags>godot</PackageTags>
         <Icon>Icon.png</Icon>
         <Copyright>Copyright (c) Alexis Brooks 2026</Copyright>
@@ -19,7 +17,6 @@
         <PackageReleaseNotes>See: $(PackageProjectUrl)/blob/master/CHANGELOG.md</PackageReleaseNotes>
         <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
 
-        <!-- Properties -->
         <SourceGenAssemblyName>$(AssemblyName).SourceGen</SourceGenAssemblyName>
     </PropertyGroup>
 
