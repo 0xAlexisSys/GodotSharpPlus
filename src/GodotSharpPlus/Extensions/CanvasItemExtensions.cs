@@ -14,7 +14,7 @@ public static class CanvasItemExtensions
         /// <returns>
         /// The cursor's relative global position.
         /// </returns>
-        [PublicAPI]
+        [PublicAPI, Pure]
         public Vector2I GetGlobalMousePositionI() => (Vector2I)self.GetGlobalMousePosition();
     }
 }
